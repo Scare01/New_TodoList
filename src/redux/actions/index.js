@@ -13,7 +13,8 @@ export const addTodo = (name, description, importance, dateToComplete) => ({
   importance,
   dateToComplete,
   id: v4(),
-  completed: false
+  completed: false,
+  completedDate: null
 });
 
 export const deleteTodo = id => ({
@@ -34,7 +35,8 @@ export const editTodo = (
   description,
   importance,
   dateToComplete,
-  completed: false
+  completed: false,
+  completedDate: null
 });
 
 export const setVisibilityFilter = filter({
