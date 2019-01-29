@@ -2,6 +2,7 @@ import {
   ADD_TODO,
   DELETE_TODO,
   EDIT_TODO,
+  TOGGLE_TODO,
   SET_VISIBILITY_FILTER
 } from "../constants/actionTypes";
 import v4 from "uuid";
@@ -37,6 +38,11 @@ export const editTodo = (
   dateToComplete,
   completed: false,
   completedDate: null
+});
+
+export const toggleTodo = id => ({
+  type: TOGGLE_TODO,
+  id
 });
 
 export const setVisibilityFilter = filter({
