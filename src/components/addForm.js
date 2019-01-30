@@ -45,23 +45,38 @@ class Form extends React.Component {
     });
   };
 
+  handleImportance = e => {
+    if (e.target.value === "Important") {
+      this.setState({ importance: "Important" });
+    }
+    if (e.target.value === "Very Important") {
+      this.setState({ importance: "Very Important" });
+    }
+  };
+
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <label htmlFor="todo">Todo</label>
-          <input
-            type="text"
-            value={this.state.name}
-            onChange={this.handleChangeName}
-          />
-          <textarea
-            type="text"
-            value={this.state.description}
-            onChange={this.handleChangeDescription}
-          />
-          <button type="submit">Add todo</button>
-        </div>
+      <form onSubmit={this.handleSubmit} className="form">
+        <label htmlFor="Name">Name todo:</label>
+        <input
+          type="text"
+          value={this.state.name}
+          onChange={this.handleChangeName}
+        />
+        <label htmlFor="Description">Description todo:</label>
+        <textarea
+          type="text"
+          value={this.state.description}
+          onChange={this.handleChangeDescription}
+        />
+        <label htmlFor="Importance">Importance:</label>
+        <select defaultValue="Normal" onChange={this.handleImportance}>
+          <option disabled>Choose Importance</option>
+          <option value="Normal">Normal</option>
+          <option value="Important">Important</option>
+          <option value="Very Important">Very Important</option>
+        </select>
+        <button type="submit">Add todo</button>
       </form>
     );
   }
