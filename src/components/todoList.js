@@ -8,10 +8,26 @@ import {
 } from "../redux/actions/index";
 import { connect } from "react-redux";
 import EditForm from "./editForm";
+import VisibilityFilters from "../redux/constants/visibilityFilters";
 
-let mapStateToProps = state => {
-  return { todos: state.todos };
+let getVisibleTodos = (todos, filter) => {
+  switch (filter) {
+    case VisibilityFilters.SHOW_ALL:
+      return todos;
+    case VisibilityFilters.SHOW_NORMAL:
+      return todos.filter(todo => todo.importance === "Normal");
+    case VisibilityFilters.SHOW_IMPORTANT:
+      return todos.filter(todo => todo.importance === "Important");
+    case VisibilityFilters.SHOW_VERY_IMPORTANT:
+      return todos.filter(todo => todo.importance === "Very Important");
+    default:
+      return "error";
+  }
 };
+
+let mapStateToProps = state => ({
+  todos: getVisibleTodos(state.todos, state.visibilityFilter)
+});
 
 let mapDispatchToProps = dispatch => {
   return {
