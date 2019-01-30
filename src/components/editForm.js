@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 class EditForm extends React.Component {
   state = {
@@ -84,7 +83,5 @@ class EditForm extends React.Component {
     );
   }
 }
-
-//let EditForm = connect(mapStateToProps)(Form);
 
 export default EditForm;
