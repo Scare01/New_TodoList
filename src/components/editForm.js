@@ -1,20 +1,14 @@
 import React from "react";
-import { addTodo } from "../redux/actions/index";
 import { connect } from "react-redux";
 
-let mapDispatchToProps = dispatch => {
-  return {
-    addTodo: (name, description, importance, dateToComplete) =>
-      dispatch(addTodo(name, description, importance, dateToComplete))
-  };
-};
-
-class Form extends React.Component {
+class EditForm extends React.Component {
   state = {
-    name: "",
-    description: "",
-    importance: "Normal",
-    dateToComplete: null
+    id: this.props.todo.id,
+    name: this.props.todo.name,
+    description: this.props.todo.description,
+    importance: this.props.todo.importance,
+    dateToComplete: this.props.todo.dateToComplete,
+    isEdit: this.props.todo.isEdit
   };
 
   handleChangeName = e => {
@@ -27,18 +21,17 @@ class Form extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addTodo(
+    this.props.clickSave(
       this.state.name,
       this.state.description,
       this.state.importance,
       this.state.dateToComplete
     );
-
     this.setState({
-      name: "",
-      description: "",
-      importance: "Normal",
-      dateToComplete: null
+      name: this.state.name,
+      description: this.state.description,
+      importance: this.state.importance,
+      dateToComplete: this.state.dateToComplete
     });
   };
 
@@ -86,15 +79,12 @@ class Form extends React.Component {
         </select>
         <label htmlFor="Date">Choose date for deadline or not:</label>
         <input type="date" name="day" onChange={this.handleChooseDate} />
-        <button type="submit">Add Todo</button>
+        <button type="submit">Save Changes</button>
       </form>
     );
   }
 }
 
-let AddForm = connect(
-  null,
-  mapDispatchToProps
-)(Form);
+//let EditForm = connect(mapStateToProps)(Form);
 
-export default AddForm;
+export default EditForm;

@@ -24,7 +24,8 @@ let todos = (state = [], action) => {
           importance: action.importance,
           dateToComplete: action.dateToComplete,
           completed: action.completed,
-          completedDate: action.completedDate
+          completedDate: action.completedDate,
+          isEdit: action.isEdit
         }
       ];
     case actionTypes.EDIT_TODO:
@@ -34,7 +35,19 @@ let todos = (state = [], action) => {
             name: action.name,
             description: action.description,
             importance: action.importance,
-            dateToComplete: action.dateToComplete
+            dateToComplete: action.dateToComplete,
+            isEdit: action.isEdit
+          });
+        }
+        return todo;
+      });
+
+    case actionTypes.EDIT_FORM:
+      return state.map(todo => {
+        if (todo.id === action.id) {
+          return Object.assign({}, todo, {
+            ...todo,
+            isEdit: true
           });
         }
         return todo;
