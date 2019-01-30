@@ -8,6 +8,10 @@ let yyyy = date.getFullYear();
 
 let today = dd + "." + mm + "." + yyyy;
 
+let time = date.getHours() + ":" + date.getMinutes();
+
+let competed_date = today + " " + time;
+
 let todos = (state = [], action) => {
   switch (action.type) {
     case actionTypes.ADD_TODO:
@@ -49,7 +53,7 @@ let todos = (state = [], action) => {
             return Object.assign({}, todo, {
               ...todo,
               completed: !todo.completed,
-              completedDate: today
+              completedDate: competed_date
             });
           }
         }
