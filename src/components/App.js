@@ -1,8 +1,11 @@
 import React from "react";
+import AddForm from "./addForm";
+import TodoList from "./todoList";
 
 let App = () => (
   <div>
-    <h2>Hello</h2>
+    <AddForm />
+    <TodoList />
   </div>
 );
 

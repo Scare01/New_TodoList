@@ -16,26 +16,23 @@ let mapDispatchToProps = dispatch => {
   };
 };
 
-let List = ({ todos, clickCompleted, clickDelete, clickEdit }) => (
-  <div>
-    {todos.map(todo => {
-      <Todo
-        todo={todo}
-        clickCompleted={() => clickCompleted(todo.id)}
-        clickDelete={() => clickDelete(todo.id)}
-        clickEdit={() =>
-          clickEdit(
-            todo.id,
-            todo.name,
-            todo.description,
-            todo.importance,
-            todo.dateToComplete
-          )
-        }
-      />;
-    })}
-  </div>
-);
+let List = ({ todos, clickCompleted, clickDelete, clickEdit }) =>
+  todos.map(todo => (
+    <Todo
+      todo={todo}
+      clickCompleted={() => clickCompleted(todo.id)}
+      clickDelete={() => clickDelete(todo.id)}
+      clickEdit={() =>
+        clickEdit(
+          todo.id,
+          todo.name,
+          todo.description,
+          todo.importance,
+          todo.dateToComplete
+        )
+      }
+    />
+  ));
 
 let TodoList = connect(
   mapStateToProps,
