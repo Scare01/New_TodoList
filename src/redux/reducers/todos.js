@@ -36,7 +36,7 @@ let todos = (state = [], action) => {
             description: action.description,
             importance: action.importance,
             dateToComplete: action.dateToComplete,
-            isEdit: action.isEdit
+            isEdit: false
           });
         }
         return todo;

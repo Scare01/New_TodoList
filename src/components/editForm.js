@@ -2,10 +2,10 @@ import React from "react";
 
 class EditForm extends React.Component {
   state = {
-    name: this.props.todo.name,
-    description: this.props.todo.description,
-    importance: this.props.todo.importance,
-    dateToComplete: this.props.todo.dateToComplete
+    name: this.props.todo.name || "",
+    description: this.props.todo.description || "",
+    importance: this.props.todo.importance || "Normal",
+    dateToComplete: this.props.todo.dateToComplete || null
   };
 
   handleChangeName = e => {
@@ -24,6 +24,12 @@ class EditForm extends React.Component {
       this.state.importance,
       this.state.dateToComplete
     );
+    this.setState({
+      name: "",
+      description: "",
+      importance: "Normal",
+      dateToComplete: null
+    });
   };
 
   handleImportance = e => {
