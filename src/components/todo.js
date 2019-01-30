@@ -5,7 +5,7 @@ let Todo = ({ todo, clickCompleted, clickDelete, clickEdit }) => (
     <h2>{todo.name}</h2>
     <h4>{todo.importance}</h4>
     <p>{todo.description}</p>
-    {todo.dateToComplete ? <p>Completed to {todo.dateToComplete}</p> : null}
+    {todo.dateToComplete ? <p>Deadline date {todo.dateToComplete}</p> : null}
     {todo.completed ? null : (
       <button disabled onClick={clickEdit}>
         Edit
@@ -14,7 +14,7 @@ let Todo = ({ todo, clickCompleted, clickDelete, clickEdit }) => (
     {todo.completed ? null : (
       <button onClick={clickCompleted}>Completed</button>
     )}
-    {todo.completed ? <p>Completed date: {todo.completedDate}</p> : null}
+    {todo.completed ? <p>Completed: {todo.completedDate}</p> : null}
     <button onClick={clickDelete}>Delete</button>
   </div>
 );
