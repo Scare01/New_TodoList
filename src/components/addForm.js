@@ -93,7 +93,7 @@ class Form extends React.Component {
         <input type="date" name="day" onChange={this.handleChooseDate} />
         <TimeField value={time} onChange={this.handleSetTime} />
         <button type="submit">Add</button>
-        <button onClick={this.props.closeForm}>Cancle</button>
+        <button onClick={this.props.closeForm}>Cancel</button>
       </form>
     );
   }
