@@ -52,13 +52,6 @@ class Form extends React.Component {
   };
 
   handleChooseDate = e => {
-    //if (e.target.value) {
-    //  let date = e.target.value
-    //    .split("-")
-    //    .reverse()
-    //    .join(".");
-    //  this.setState({ dateToComplete: date });
-
     this.setState({ dateToComplete: e.target.value });
   };
 
