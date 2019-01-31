@@ -15,8 +15,8 @@ class Todo extends React.Component {
           .join(".")
       : null;
 
-    let deadlineDate = this.props.dateToComplete ? (
-      <p>{dateToComplete}</p>
+    let deadlineDate = this.props.todo.dateToComplete ? (
+      <p>Deadline date: {dateToComplete}</p>
     ) : null;
 
     let buttonEdit = this.props.todo.completed ? null : (
