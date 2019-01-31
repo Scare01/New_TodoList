@@ -1,11 +1,14 @@
 import React from "react";
 import { addTodo } from "../redux/actions/index";
 import { connect } from "react-redux";
+import TimeField from "react-simple-timefield";
 
 let mapDispatchToProps = dispatch => {
   return {
-    addTodo: (name, description, importance, dateToComplete) =>
-      dispatch(addTodo(name, description, importance, dateToComplete))
+    addTodo: (name, description, importance, dateToComplete, timeToComplete) =>
+      dispatch(
+        addTodo(name, description, importance, dateToComplete, timeToComplete)
+      )
   };
 };
 
@@ -14,7 +17,8 @@ class Form extends React.Component {
     name: "",
     description: "",
     importance: "Normal",
-    dateToComplete: null
+    dateToComplete: null,
+    timeToComplete: "00:00"
   };
 
   handleChangeName = e => {
@@ -27,18 +31,21 @@ class Form extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.props.closeForm();
     this.props.addTodo(
       this.state.name,
       this.state.description,
       this.state.importance,
-      this.state.dateToComplete
+      this.state.dateToComplete,
+      this.state.timeToComplete
     );
 
     this.setState({
       name: "",
       description: "",
       importance: "Normal",
-      dateToComplete: null
+      dateToComplete: null,
+      timeToComplete: "00:00"
     });
   };
 
@@ -55,7 +62,12 @@ class Form extends React.Component {
     this.setState({ dateToComplete: e.target.value });
   };
 
+  handleSetTime = time => {
+    this.setState({ timeToComplete: time });
+  };
+
   render() {
+    let time = this.state.timeToComplete;
     return (
       <form onSubmit={this.handleSubmit} className="form">
         <label htmlFor="Name">Name todo:</label>
@@ -78,9 +90,11 @@ class Form extends React.Component {
           <option value="Important">Important</option>
           <option value="Very Important">Very Important</option>
         </select>
-        <label htmlFor="Date">Choose date for deadline or not:</label>
+        <label htmlFor="Date">Choose date and time for deadline or not:</label>
         <input type="date" name="day" onChange={this.handleChooseDate} />
-        <button type="submit">Add Todo</button>
+        <TimeField value={time} onChange={this.handleSetTime} />
+        <button type="submit">Add</button>
+        <button onClick={this.props.closeForm}>Cancle</button>
       </form>
     );
   }

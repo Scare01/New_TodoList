@@ -23,6 +23,7 @@ let todos = (state = [], action) => {
           description: action.description,
           importance: action.importance,
           dateToComplete: action.dateToComplete,
+          timeToComplete: action.timeToComplete,
           completed: action.completed,
           completedDate: action.completedDate,
           isEdit: action.isEdit
@@ -37,6 +38,7 @@ let todos = (state = [], action) => {
             description: action.description,
             importance: action.importance,
             dateToComplete: action.dateToComplete,
+            timeToComplete: action.timeToComplete,
             isEdit: false
           });
         }

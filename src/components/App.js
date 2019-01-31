@@ -1,12 +1,14 @@
 import React from "react";
-import AddForm from "./addForm";
+import AddTodo from "./addTodo";
 import TodoList from "./todoList";
 import Filter from "./filter";
 
 let App = () => (
   <div>
-    <AddForm />
+    <AddTodo />
     <TodoList />
+    <br />
+    <h4>Filter:</h4>
     <Filter />
   </div>
 );

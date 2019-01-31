@@ -1,11 +1,13 @@
 import React from "react";
+import TimeField from "react-simple-timefield";
 
 class EditForm extends React.Component {
   state = {
     name: this.props.todo.name || "",
     description: this.props.todo.description || "",
     importance: this.props.todo.importance || "Normal",
-    dateToComplete: this.props.todo.dateToComplete || null
+    dateToComplete: this.props.todo.dateToComplete || "",
+    timeToComplete: this.props.todo.timeToComplete || "00:00"
   };
 
   handleChangeName = e => {
@@ -17,17 +19,20 @@ class EditForm extends React.Component {
   };
 
   handleSubmit = e => {
+    e.preventDefault();
     this.props.clickSave(
       this.state.name,
       this.state.description,
       this.state.importance,
-      this.state.dateToComplete
+      this.state.dateToComplete,
+      this.state.timeToComplete
     );
     this.setState({
       name: "",
       description: "",
       importance: "Normal",
-      dateToComplete: null
+      dateToComplete: "",
+      timeToComplete: "00:00"
     });
   };
 
@@ -41,16 +46,15 @@ class EditForm extends React.Component {
   };
 
   handleChooseDate = e => {
-    if (e.target.value) {
-      let date = e.target.value
-        .split("-")
-        .reverse()
-        .join(".");
-      this.setState({ dateToComplete: date });
-    }
+    this.setState({ dateToComplete: e.target.value });
+  };
+
+  handleSetTime = time => {
+    this.setState({ timeToComplete: time });
   };
 
   render() {
+    let time = this.state.timeToComplete;
     return (
       <form onSubmit={this.handleSubmit} className="form">
         <label htmlFor="Name">Name todo:</label>
@@ -75,6 +79,8 @@ class EditForm extends React.Component {
         </select>
         <label htmlFor="Date">Choose date for deadline or not:</label>
         <input type="date" name="day" onChange={this.handleChooseDate} />
+        <label htmlFor="Time">Set time:</label>
+        <TimeField value={time} onChange={this.handleSetTime} />
         <button type="submit">Save Changes</button>
       </form>
     );

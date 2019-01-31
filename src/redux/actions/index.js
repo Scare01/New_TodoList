@@ -8,12 +8,19 @@ import {
 } from "../constants/actionTypes";
 import v4 from "uuid";
 
-export const addTodo = (name, description, importance, dateToComplete) => ({
+export const addTodo = (
+  name,
+  description,
+  importance,
+  dateToComplete,
+  timeToComplete
+) => ({
   type: ADD_TODO,
   name,
   description,
   importance,
   dateToComplete,
+  timeToComplete,
   id: v4(),
   completed: false,
   completedDate: null,
