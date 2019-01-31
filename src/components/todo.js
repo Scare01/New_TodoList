@@ -1,36 +1,49 @@
 import React from "react";
 
-let date = new Date();
-let dd = date.getDate();
-let mm =
-  date.getMonth() < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-let yyyy = date.getFullYear();
+class Todo extends React.Component {
+  render() {
+    let today = new Date();
 
-let today = dd + mm + yyyy;
+    let todoDeadlineDate = new Date(this.props.todo.dateToComplete);
 
-let Todo = ({ todo, clickCompleted, clickDelete, clickEdit }) => (
-  <div className="todo">
-    <h2
-      style={{
-        color: todo.dateToComplete
-          ? todo.dateToComplete.split(".").join("") < today
-            ? "red"
-            : "balck"
-          : null
-      }}
-    >
-      {todo.name}
-    </h2>
-    <h4>{todo.importance}</h4>
-    <p>{todo.description}</p>
-    {todo.dateToComplete ? <p>Deadline date {todo.dateToComplete}</p> : null}
-    {todo.completed ? null : <button onClick={clickEdit}>Edit</button>}
-    {todo.completed ? null : (
-      <button onClick={clickCompleted}>Completed</button>
-    )}
-    {todo.completed ? <p>Completed: {todo.completedDate}</p> : null}
-    <button onClick={clickDelete}>Delete</button>
-  </div>
-);
+    let style = todoDeadlineDate < today ? "red" : "black";
+
+    let dateToComplete = this.props.todo.dateToComplete
+      ? this.props.todo.dateToComplete
+          .split("-")
+          .reverse()
+          .join(".")
+      : null;
+
+    let deadlineDate = this.props.dateToComplete ? (
+      <p>{dateToComplete}</p>
+    ) : null;
+
+    let buttonEdit = this.props.todo.completed ? null : (
+      <button onClick={this.props.clickEdit}>Edit</button>
+    );
+
+    let buttonCompleted = this.props.todo.completed ? null : (
+      <button onClick={this.props.clickCompleted}>Completed</button>
+    );
+
+    let completedDate = this.props.todo.completed ? (
+      <p>Completed: {this.props.todo.completedDate}</p>
+    ) : null;
+
+    return (
+      <div style={{ color: style }}>
+        <h2>{this.props.todo.name}</h2>
+        <h4>{this.props.todo.importance}</h4>
+        <p>{this.props.todo.description}</p>
+        {deadlineDate}
+        {buttonEdit}
+        {buttonCompleted}
+        {completedDate}
+        <button onClick={this.props.clickDelete}>Delete</button>
+      </div>
+    );
+  }
+}
 
 export default Todo;
