@@ -34,8 +34,24 @@ let mapDispatchToProps = dispatch => {
     clickCompleted: id => dispatch(toggleTodo(id)),
     clickDelete: id => dispatch(deleteTodo(id)),
     clickEdit: id => dispatch(editForm(id)),
-    clickSave: (name, description, importance, dateToComplete) =>
-      dispatch(editTodo(name, description, importance, dateToComplete))
+    clickSave: (
+      id,
+      name,
+      description,
+      importance,
+      dateToComplete,
+      timeToComplete
+    ) =>
+      dispatch(
+        editTodo(
+          id,
+          name,
+          description,
+          importance,
+          dateToComplete,
+          timeToComplete
+        )
+      )
   };
 };
 
@@ -45,8 +61,21 @@ let List = ({ todos, clickCompleted, clickDelete, clickEdit, clickSave }) =>
       <EditForm
         key={todo.id}
         todo={todo}
-        clickSave={(name, description, importance, dateToComplete) =>
-          clickSave(todo.id, name, description, importance, dateToComplete)
+        clickSave={(
+          name,
+          description,
+          importance,
+          dateToComplete,
+          timeToComplete
+        ) =>
+          clickSave(
+            todo.id,
+            name,
+            description,
+            importance,
+            dateToComplete,
+            timeToComplete
+          )
         }
       />
     ) : (

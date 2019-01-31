@@ -29,8 +29,7 @@ class Form extends React.Component {
     this.setState({ description: e.target.value });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+  handleSubmit = () => {
     this.props.closeForm();
     this.props.addTodo(
       this.state.name,

@@ -4,9 +4,13 @@ class Todo extends React.Component {
   render() {
     let today = new Date();
 
+    let timeToComplete = this.props.todo.timeToComplete
+      ? this.props.todo.timeToComplete
+      : "00:00";
+
     let todoDate =
-      this.props.todo.dateToComplete && this.props.todo.timeToComplete
-        ? this.props.todo.dateToComplete + "T" + this.props.todo.timeToComplete
+      this.props.todo.dateToComplete && timeToComplete
+        ? this.props.todo.dateToComplete + "T" + timeToComplete
         : this.props.todo.dateToComplete
         ? this.props.todo.dateToComplete
         : null;
@@ -26,10 +30,6 @@ class Todo extends React.Component {
           .split("-")
           .reverse()
           .join(".")
-      : null;
-
-    let timeToComplete = this.props.todo.timeToComplete
-      ? this.props.todo.timeToComplete
       : null;
 
     let deadlineDate = this.props.todo.dateToComplete ? (

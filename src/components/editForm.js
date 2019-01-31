@@ -6,8 +6,8 @@ class EditForm extends React.Component {
     name: this.props.todo.name || "",
     description: this.props.todo.description || "",
     importance: this.props.todo.importance || "Normal",
-    dateToComplete: this.props.todo.dateToComplete || "",
-    timeToComplete: this.props.todo.timeToComplete || "00:00"
+    dateToComplete: null,
+    timeToComplete: "00:00"
   };
 
   handleChangeName = e => {
@@ -18,8 +18,7 @@ class EditForm extends React.Component {
     this.setState({ description: e.target.value });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+  handleSubmit = () => {
     this.props.clickSave(
       this.state.name,
       this.state.description,
@@ -27,13 +26,6 @@ class EditForm extends React.Component {
       this.state.dateToComplete,
       this.state.timeToComplete
     );
-    this.setState({
-      name: "",
-      description: "",
-      importance: "Normal",
-      dateToComplete: "",
-      timeToComplete: "00:00"
-    });
   };
 
   handleImportance = e => {
@@ -55,6 +47,7 @@ class EditForm extends React.Component {
 
   render() {
     let time = this.state.timeToComplete;
+
     return (
       <form onSubmit={this.handleSubmit} className="form">
         <label htmlFor="Name">Name todo:</label>

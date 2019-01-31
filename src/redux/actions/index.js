@@ -42,14 +42,16 @@ export const editTodo = (
   name,
   description,
   importance,
-  dateToComplete
+  dateToComplete,
+  timeToComplete
 ) => ({
   type: EDIT_TODO,
-  id: id,
-  name: name,
-  description: description,
-  importance: importance,
-  dateToComplete: dateToComplete
+  id,
+  name,
+  description,
+  importance,
+  dateToComplete,
+  timeToComplete
 });
 
 export const toggleTodo = id => ({
