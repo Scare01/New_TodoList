@@ -17,7 +17,6 @@ class EditForm extends React.Component {
   };
 
   handleSubmit = e => {
-    e.preventDefault();
     this.props.clickSave(
       this.state.name,
       this.state.description,

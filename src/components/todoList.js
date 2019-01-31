@@ -45,7 +45,9 @@ let List = ({ todos, clickCompleted, clickDelete, clickEdit, clickSave }) =>
       <EditForm
         key={todo.id}
         todo={todo}
-        clickSave={() => clickSave(todo.id)}
+        clickSave={(name, description, importance, dateToComplete) =>
+          clickSave(todo.id, name, description, importance, dateToComplete)
+        }
       />
     ) : (
       <Todo

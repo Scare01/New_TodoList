@@ -32,6 +32,7 @@ let todos = (state = [], action) => {
       return state.map(todo => {
         if (todo.id === action.id) {
           return Object.assign({}, todo, {
+            ...todo,
             name: action.name,
             description: action.description,
             importance: action.importance,
