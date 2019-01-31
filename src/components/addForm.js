@@ -17,7 +17,7 @@ class Form extends React.Component {
     name: "",
     description: "",
     importance: "Normal",
-    dateToComplete: null,
+    dateToComplete: "",
     timeToComplete: "00:00"
   };
 

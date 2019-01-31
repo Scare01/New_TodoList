@@ -1,7 +1,23 @@
 import React from "react";
 
 class Todo extends React.Component {
+  handleComplete = () => {
+    let day = new Date();
+    let dd = day.getDate();
+    let mm =
+      day.getMonth() < 10 ? "0" + (day.getMonth() + 1) : day.getMonth() + 1;
+    let yyyy = day.getFullYear();
+    let hh = day.getHours();
+    let min = day.getMinutes() < 10 ? "0" + day.getMinutes() : day.getMinutes();
+
+    let completedDate = dd + "." + mm + "." + yyyy + " " + hh + ":" + min;
+
+    this.props.clickCompleted(completedDate);
+  };
+
   render() {
+    console.log(this.props.todo.completedDate);
+
     let today = new Date();
 
     let timeToComplete = this.props.todo.timeToComplete
@@ -43,11 +59,11 @@ class Todo extends React.Component {
     );
 
     let buttonCompleted = this.props.todo.completed ? null : (
-      <button onClick={this.props.clickCompleted}>Completed</button>
+      <button onClick={this.handleComplete}>Completed</button>
     );
 
     let completedDate = this.props.todo.completed ? (
-      <p>Completed: {this.props.todo.completedDate}</p>
+      <p>Completed at {this.props.todo.completedDate}</p>
     ) : null;
 
     return (

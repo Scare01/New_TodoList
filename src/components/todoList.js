@@ -31,7 +31,8 @@ let mapStateToProps = state => ({
 
 let mapDispatchToProps = dispatch => {
   return {
-    clickCompleted: id => dispatch(toggleTodo(id)),
+    clickCompleted: (id, completedDate) =>
+      dispatch(toggleTodo(id, completedDate)),
     clickDelete: id => dispatch(deleteTodo(id)),
     clickEdit: id => dispatch(editForm(id)),
     clickSave: (
@@ -82,7 +83,7 @@ let List = ({ todos, clickCompleted, clickDelete, clickEdit, clickSave }) =>
       <Todo
         key={todo.id}
         todo={todo}
-        clickCompleted={() => clickCompleted(todo.id)}
+        clickCompleted={completedDate => clickCompleted(todo.id, completedDate)}
         clickDelete={() => clickDelete(todo.id)}
         clickEdit={() => clickEdit(todo.id)}
       />

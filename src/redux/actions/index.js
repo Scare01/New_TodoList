@@ -23,7 +23,7 @@ export const addTodo = (
   timeToComplete,
   id: v4(),
   completed: false,
-  completedDate: null,
+  completedDate: "",
   isEdit: false
 });
 
@@ -54,9 +54,10 @@ export const editTodo = (
   timeToComplete
 });
 
-export const toggleTodo = id => ({
+export const toggleTodo = (id, completedDate) => ({
   type: TOGGLE_TODO,
-  id
+  id,
+  completedDate
 });
 
 export const setVisibilityFilter = filter => ({

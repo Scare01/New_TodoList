@@ -1,17 +1,5 @@
 import * as actionTypes from "../constants/actionTypes";
 
-let date = new Date();
-let dd = date.getDate();
-let mm =
-  date.getMonth() < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-let yyyy = date.getFullYear();
-
-let today = dd + "." + mm + "." + yyyy;
-
-let time = date.getHours() + ":" + date.getMinutes();
-
-let competed_date = today + " " + time;
-
 let todos = (state = [], action) => {
   switch (action.type) {
     case actionTypes.ADD_TODO:
@@ -59,20 +47,13 @@ let todos = (state = [], action) => {
     case actionTypes.TOGGLE_TODO:
       return state.map(todo => {
         if (todo.id === action.id) {
-          if (todo.competed) {
-            return Object.assign({}, todo, {
-              ...todo,
-              completed: !todo.completed,
-              completedDate: null
-            });
-          } else {
-            return Object.assign({}, todo, {
-              ...todo,
-              completed: !todo.completed,
-              completedDate: competed_date
-            });
-          }
+          return Object.assign({}, todo, {
+            ...todo,
+            completed: true,
+            completedDate: action.completedDate
+          });
         }
+
         return todo;
       });
     case actionTypes.DELETE_TODO:
