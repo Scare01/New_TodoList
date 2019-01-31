@@ -12,7 +12,11 @@ let Todo = ({ todo, clickCompleted, clickDelete, clickEdit }) => (
   <div className="todo">
     <h2
       style={{
-        color: todo.dateToComplete.split(".").join("") < today ? "red" : "balck"
+        color: todo.dateToComplete
+          ? todo.dateToComplete.split(".").join("") < today
+            ? "red"
+            : "balck"
+          : null
       }}
     >
       {todo.name}
