@@ -1,5 +1,6 @@
 import React from "react";
 import AddForm from "./addForm";
+import { Button } from 'semantic-ui-react';
 
 class AddTodo extends React.Component {
   state = {
@@ -14,7 +15,7 @@ class AddTodo extends React.Component {
     return this.state.isOpen ? (
       <AddForm closeForm={this.hadleOpenForm} />
     ) : (
-      <button onClick={this.hadleOpenForm}>Add Todo</button>
+      <Button onClick={this.hadleOpenForm} primary>Add Todo</Button>
     );
   }
 }

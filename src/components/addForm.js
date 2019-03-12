@@ -2,6 +2,13 @@ import React from "react";
 import { addTodo } from "../redux/actions/index";
 import { connect } from "react-redux";
 import TimeField from "react-simple-timefield";
+import { Form, Button, Input } from 'semantic-ui-react';
+
+let options = [
+  {
+    value: ''
+  }
+]
 
 let mapDispatchToProps = dispatch => {
   return {
@@ -12,7 +19,7 @@ let mapDispatchToProps = dispatch => {
   };
 };
 
-class Form extends React.Component {
+class AddTodoForm extends React.Component {
   state = {
     name: "",
     description: "",
@@ -68,33 +75,47 @@ class Form extends React.Component {
   render() {
     let time = this.state.timeToComplete;
     return (
-      <form onSubmit={this.handleSubmit} className="form">
-        <label htmlFor="Name">Name todo:</label>
-        <input
-          type="text"
+
+
+
+
+      <Form onSubmit={this.handleSubmit} id="form">
+        <Form.Input 
+          label='Name todo:' type="text"
           value={this.state.name}
-          onChange={this.handleChangeName}
-          required
+          onChange={this.handleChangeName} 
         />
-        <label htmlFor="Description">Description todo:</label>
-        <textarea
+        <Form.TextArea 
+          label='Description todo:' 
           type="text"
           value={this.state.description}
-          onChange={this.handleChangeDescription}
+          onChange={this.handleChangeDescription} 
         />
-        <label htmlFor="Importance">Importance:</label>
-        <select defaultValue="Normal" onChange={this.handleImportance}>
+        <Form.Select
+          defaultValue="Normal" 
+          onChange={this.handleImportance}
+        >
           <option disabled>Choose Importance</option>
           <option value="Normal">Normal</option>
           <option value="Important">Important</option>
           <option value="Very Important">Very Important</option>
-        </select>
-        <label htmlFor="Date">Choose date and time for deadline or not:</label>
-        <input type="date" name="day" onChange={this.handleChooseDate} />
-        <TimeField value={time} onChange={this.handleSetTime} />
-        <button type="submit">Add</button>
-        <button onClick={this.props.closeForm}>Cancel</button>
-      </form>
+        </Form.Select>
+         
+      
+        
+          <label htmlFor="Date">Choose date and time for deadline or not:</label>
+          <input type="date" name="day" onChange={this.handleChooseDate} />
+
+
+          <TimeField value={time} onChange={this.handleSetTime} />
+        <Button.Group>
+          <Button type="submit" color='green'>Add</Button>
+          <Button.Or />
+          <Button onClick={this.props.closeForm} color='red'>Cancel</Button>
+        </Button.Group>
+        
+        
+      </Form>
     );
   }
 }
@@ -102,6 +123,6 @@ class Form extends React.Component {
 let AddForm = connect(
   null,
   mapDispatchToProps
-)(Form);
+)(AddTodoForm);
 
 export default AddForm;

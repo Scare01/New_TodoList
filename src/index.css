@@ -1,5 +1,13 @@
-.form {
+#form {
   display: flex;
   flex-direction: column;
   width: 50%;
+  margin: 0 auto;
+}
+
+
+#mainContent {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
 }
