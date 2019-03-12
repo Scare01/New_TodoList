@@ -6,7 +6,16 @@ import { Form, Button, Input } from 'semantic-ui-react';
 
 let options = [
   {
-    value: ''
+    value: 'Normal',
+    text: 'Normal'
+  },
+  {
+    value: 'Important',
+    text: 'Important'
+  },
+  {
+    value: 'Very Important',
+    text: 'Very Important'
   }
 ]
 
@@ -49,19 +58,14 @@ class AddTodoForm extends React.Component {
     this.setState({
       name: "",
       description: "",
-      importance: "Normal",
+      importance: "",
       dateToComplete: null,
       timeToComplete: "00:00"
     });
   };
 
-  handleImportance = e => {
-    if (e.target.value === "Important") {
-      this.setState({ importance: "Important" });
-    }
-    if (e.target.value === "Very Important") {
-      this.setState({ importance: "Very Important" });
-    }
+  handleImportance = (e, {value}) => {
+    this.setState({ importance: value });
   };
 
   handleChooseDate = e => {
@@ -92,22 +96,18 @@ class AddTodoForm extends React.Component {
           onChange={this.handleChangeDescription} 
         />
         <Form.Select
-          defaultValue="Normal" 
+          placeholder="Choose importance"
+          options={options}
           onChange={this.handleImportance}
-        >
-          <option disabled>Choose Importance</option>
-          <option value="Normal">Normal</option>
-          <option value="Important">Important</option>
-          <option value="Very Important">Very Important</option>
-        </Form.Select>
-         
-      
+        />
+        <Form.Input 
+          type="date"
+          onChange={this.handleChooseDate}
+        />      
         
-          <label htmlFor="Date">Choose date and time for deadline or not:</label>
-          <input type="date" name="day" onChange={this.handleChooseDate} />
+         
 
-
-          <TimeField value={time} onChange={this.handleSetTime} />
+          <TimeField value={time} onChange={this.handleSetTime} id='time' />
         <Button.Group>
           <Button type="submit" color='green'>Add</Button>
           <Button.Or />
