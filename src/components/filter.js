@@ -3,7 +3,7 @@ import FilterButton from "./filterButton";
 import VisibilityFilters from "../redux/constants/visibilityFilters";
 
 let Filter = () => (
-  <div>
+  <div id="filter">
     <FilterButton filter={VisibilityFilters.SHOW_ALL}>All</FilterButton>
     <FilterButton filter={VisibilityFilters.SHOW_NORMAL}>Normal</FilterButton>
     <FilterButton filter={VisibilityFilters.SHOW_IMPORTANT}>

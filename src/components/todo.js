@@ -1,4 +1,5 @@
 import React from "react";
+import { Card, Button } from "semantic-ui-react";
 
 class Todo extends React.Component {
   handleComplete = () => {
@@ -55,11 +56,15 @@ class Todo extends React.Component {
     ) : null;
 
     let buttonEdit = this.props.todo.completed ? null : (
-      <button onClick={this.props.clickEdit}>Edit</button>
+      <Button color="blue" size="small" onClick={this.props.clickEdit}>
+        Edit
+      </Button>
     );
 
     let buttonCompleted = this.props.todo.completed ? null : (
-      <button onClick={this.handleComplete}>Completed</button>
+      <Button color="green" size="small" onClick={this.handleComplete}>
+        Completed
+      </Button>
     );
 
     let completedDate = this.props.todo.completed ? (
@@ -67,16 +72,25 @@ class Todo extends React.Component {
     ) : null;
 
     return (
-      <div style={{ color: style }}>
-        <h2>{this.props.todo.name}</h2>
-        <h4>{this.props.todo.importance}</h4>
-        <p>{this.props.todo.description}</p>
-        {deadlineDate}
-        {buttonEdit}
-        {buttonCompleted}
-        {completedDate}
-        <button onClick={this.props.clickDelete}>Delete</button>
-      </div>
+      <Card style={{ color: style }} id="card">
+        <Card.Content>
+          <Card.Header>{this.props.todo.name}</Card.Header>
+          <Card.Meta>Importance: {this.props.todo.importance}</Card.Meta>
+          <Card.Description>{this.props.todo.description}</Card.Description>
+          <Card.Content extra>
+            <Card.Description>{deadlineDate}</Card.Description>
+            <Card.Description>{completedDate}</Card.Description>
+          </Card.Content>
+        </Card.Content>
+
+        <Button.Group id="todoButtons" size="mini">
+          {buttonEdit}
+          {buttonCompleted}
+          <Button color="red" size="small" onClick={this.props.clickDelete}>
+            Delete
+          </Button>
+        </Button.Group>
+      </Card>
     );
   }
 }

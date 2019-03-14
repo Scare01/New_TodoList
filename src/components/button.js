@@ -1,9 +1,10 @@
 import React from "react";
+import { Button } from "semantic-ui-react";
 
-let Button = ({ active, children, onClick }) => (
-  <button onClick={onClick} disabled={active}>
+let myButton = ({ active, children, onClick }) => (
+  <Button onClick={onClick} disabled={active} size="mini">
     {children}
-  </button>
+  </Button>
 );
 
-export default Button;
+export default myButton;

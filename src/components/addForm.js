@@ -1,23 +1,22 @@
 import React from "react";
 import { addTodo } from "../redux/actions/index";
 import { connect } from "react-redux";
-import TimeField from "react-simple-timefield";
-import { Form, Button, Input } from 'semantic-ui-react';
+import { Form, Button } from "semantic-ui-react";
 
 let options = [
   {
-    value: 'Normal',
-    text: 'Normal'
+    value: "Normal",
+    text: "Normal"
   },
   {
-    value: 'Important',
-    text: 'Important'
+    value: "Important",
+    text: "Important"
   },
   {
-    value: 'Very Important',
-    text: 'Very Important'
+    value: "Very Important",
+    text: "Very Important"
   }
-]
+];
 
 let mapDispatchToProps = dispatch => {
   return {
@@ -64,7 +63,7 @@ class AddTodoForm extends React.Component {
     });
   };
 
-  handleImportance = (e, {value}) => {
+  handleImportance = (e, { value }) => {
     this.setState({ importance: value });
   };
 
@@ -77,44 +76,39 @@ class AddTodoForm extends React.Component {
   };
 
   render() {
-    let time = this.state.timeToComplete;
+    //let time = this.state.timeToComplete;
     return (
-
-
-
-
       <Form onSubmit={this.handleSubmit} id="form">
-        <Form.Input 
-          label='Name todo:' type="text"
+        <Form.Input
+          label="Name todo:"
+          type="text"
           value={this.state.name}
-          onChange={this.handleChangeName} 
+          onChange={this.handleChangeName}
         />
-        <Form.TextArea 
-          label='Description todo:' 
+        <Form.TextArea
+          label="Description todo:"
           type="text"
           value={this.state.description}
-          onChange={this.handleChangeDescription} 
+          onChange={this.handleChangeDescription}
         />
         <Form.Select
           placeholder="Choose importance"
           options={options}
           onChange={this.handleImportance}
         />
-        <Form.Input 
-          type="date"
-          onChange={this.handleChooseDate}
-        />      
-        
-         
+        <Form.Input type="date" onChange={this.handleChooseDate} />
 
-          <TimeField value={time} onChange={this.handleSetTime} id='time' />
+        <Form.Input type="time" onChange={this.handleSetTime} />
+
         <Button.Group>
-          <Button type="submit" color='green'>Add</Button>
+          <Button type="submit" color="green">
+            Add
+          </Button>
           <Button.Or />
-          <Button onClick={this.props.closeForm} color='red'>Cancel</Button>
+          <Button onClick={this.props.closeForm} color="red">
+            Cancel
+          </Button>
         </Button.Group>
-        
-        
       </Form>
     );
   }

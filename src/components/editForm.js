@@ -1,13 +1,27 @@
 import React from "react";
-import TimeField from "react-simple-timefield";
+import { Form, Button } from "semantic-ui-react";
+
+let options = [
+  {
+    value: "Normal",
+    text: "Normal"
+  },
+  {
+    value: "Important",
+    text: "Important"
+  },
+  {
+    value: "Very Important",
+    text: "Very Important"
+  }
+];
 
 class EditForm extends React.Component {
   state = {
     name: this.props.todo.name || "",
     description: this.props.todo.description || "",
     importance: this.props.todo.importance || "Normal",
-    dateToComplete: null,
-    timeToComplete: "00:00"
+    dateToComplete: null
   };
 
   handleChangeName = e => {
@@ -46,36 +60,31 @@ class EditForm extends React.Component {
   };
 
   render() {
-    let time = this.state.timeToComplete;
-
     return (
-      <form onSubmit={this.handleSubmit} className="form">
-        <label htmlFor="Name">Name todo:</label>
-        <input
+      <Form onSubmit={this.handleSubmit} id="form">
+        <Form.Input
+          label="Name todo:"
           type="text"
           value={this.state.name}
           onChange={this.handleChangeName}
-          required
         />
-        <label htmlFor="Description">Description todo:</label>
-        <textarea
+        <Form.TextArea
+          label="Description todo:"
           type="text"
           value={this.state.description}
           onChange={this.handleChangeDescription}
         />
-        <label htmlFor="Importance">Importance:</label>
-        <select defaultValue="Normal" onChange={this.handleImportance}>
-          <option disabled>Choose Importance</option>
-          <option value="Normal">Normal</option>
-          <option value="Important">Important</option>
-          <option value="Very Important">Very Important</option>
-        </select>
-        <label htmlFor="Date">Choose date for deadline or not:</label>
-        <input type="date" name="day" onChange={this.handleChooseDate} />
-        <label htmlFor="Time">Set time:</label>
-        <TimeField value={time} onChange={this.handleSetTime} />
-        <button type="submit">Save Changes</button>
-      </form>
+        <Form.Select
+          placeholder="Choose importance"
+          options={options}
+          onChange={this.handleImportance}
+        />
+        <Form.Input type="date" onChange={this.handleChooseDate} />
+
+        <Button type="submit" color="green">
+          Save Changes
+        </Button>
+      </Form>
     );
   }
 }

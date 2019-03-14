@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { setVisibilityFilter } from "../redux/actions/index";
-import Button from "./button";
+import myButton from "./button";
 
 let mapStateToProps = (state, ownProps) => ({
   active: ownProps.filter === state.visibilityFilter
@@ -13,4 +13,4 @@ let mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Button);
+)(myButton);

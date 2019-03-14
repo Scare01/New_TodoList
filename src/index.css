@@ -5,9 +5,36 @@
   margin: 0 auto;
 }
 
-
 #mainContent {
   width: 80%;
   margin: 0 auto;
   text-align: center;
+}
+
+#todoList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#todoList > .ui.card:first-child {
+  margin-top: 1em;
+}
+
+#todoList > .ui.card:last-child {
+  margin-bottom: 1em;
+}
+
+#filter {
+  margin: 5px;
+}
+
+#todoButtons {
+  width: 80%;
+  align-self: center;
+  justify-content: space-around;
+}
+
+#card {
+  padding: 5px;
+  width: 33%;
 }
